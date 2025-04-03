@@ -9,6 +9,13 @@ let roundNumber = 1;
 let scores = { player1: 0, player2: 0 };
 let currentPlayer = "player1";
 
+// Card translations
+const cardTranslations = {
+    "E": "إمبراطور",
+    "S": "عبد",
+    "C": "مواطن"
+};
+
 // Initialize event listeners
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("start-game").addEventListener("click", startGame);
@@ -26,14 +33,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Random card distribution
 function initializeCards() {
-    // Randomly decide who gets Emperor (E) and who gets Slave (S)
-    // if (Math.random() < 0.5) {
+    if (Math.random() < 0.5) {
         player1Cards = ["E", "C", "C", "C"];
         player2Cards = ["S", "C", "C", "C"];
-    // } else {
-    //     player1Cards = ["S", "C", "C", "C"];
-    //     player2Cards = ["E", "C", "C", "C"];
-    // }
+    } else {
+        player1Cards = ["S", "C", "C", "C"];
+        player2Cards = ["E", "C", "C", "C"];
+    }
 }
 
 // Main game functions
@@ -42,49 +48,47 @@ function startGame() {
     player2Name = document.getElementById("player2-name").value.trim();
 
     if (player1Name && player2Name) {
-        initializeCards(); // Random card distribution
-        console.log("Player 1 cards:", player1Cards);
-        console.log("Player 2 cards:", player2Cards);
+        initializeCards();
         document.getElementById("player-info").classList.add("hidden");
-        document.getElementById("player1-title").textContent = `Are you ${player1Name}?`;
-        document.getElementById("confirm-player1").textContent = `I am ${player1Name}`;
+        document.getElementById("player1-title").textContent = `هل أنت ${player1Name}؟`;
+        document.getElementById("confirm-player1").textContent = `نعم، أنا ${player1Name}`;
         document.getElementById("player1-confirm").classList.remove("hidden");
     } else {
-        alert("Please enter names for both players.");
+        alert("الرجاء إدخال أسماء اللاعبين");
     }
 }
 
 function confirmPlayer1() {
     document.getElementById("player1-confirm").classList.add("hidden");
-    document.getElementById("p1-cards-title").textContent = `Cards for ${player1Name}`;
+    document.getElementById("p1-cards-title").textContent = `بطاقات ${player1Name}`;
     document.getElementById("player1-cards").classList.remove("hidden");
     showPlayerCards("p1-cards", player1Cards);
 }
 
 function p1SeenCards() {
     document.getElementById("player1-cards").classList.add("hidden");
-    document.getElementById("player2-title").textContent = `Are you ${player2Name}?`;
-    document.getElementById("confirm-player2").textContent = `I am ${player2Name}`;
+    document.getElementById("player2-title").textContent = `هل أنت ${player2Name}؟`;
+    document.getElementById("confirm-player2").textContent = `نعم، أنا ${player2Name}`;
     document.getElementById("player2-confirm").classList.remove("hidden");
 }
 
 function confirmPlayer2() {
     document.getElementById("player2-confirm").classList.add("hidden");
-    document.getElementById("p2-cards-title").textContent = `Cards for ${player2Name}`;
+    document.getElementById("p2-cards-title").textContent = `بطاقات ${player2Name}`;
     document.getElementById("player2-cards").classList.remove("hidden");
     showPlayerCards("p2-cards", player2Cards);
 }
 
 function p2SeenCards() {
     document.getElementById("player2-cards").classList.add("hidden");
-    document.getElementById("p1-reconfirm-title").textContent = `Are you still ${player1Name}?`;
+    document.getElementById("p1-reconfirm-title").textContent = `هل ما زلت ${player1Name}؟`;
     document.getElementById("player1-reconfirm").classList.remove("hidden");
 }
 
 function p1Reconfirm() {
     document.getElementById("player1-reconfirm").classList.add("hidden");
     document.getElementById("player1-choose").classList.remove("hidden");
-    document.getElementById("p1-choose-title").textContent = `Choose Your Card, ${player1Name}`;
+    document.getElementById("p1-choose-title").textContent = `اختر بطاقتك، ${player1Name}`;
     showSelectableCards("p1-choose-cards", player1Cards, "player1");
     currentPlayer = "player1";
 }
@@ -92,7 +96,7 @@ function p1Reconfirm() {
 function p2Reconfirm() {
     document.getElementById("player2-reconfirm").classList.add("hidden");
     document.getElementById("player2-choose").classList.remove("hidden");
-    document.getElementById("p2-choose-title").textContent = `Choose Your Card, ${player2Name}`;
+    document.getElementById("p2-choose-title").textContent = `اختر بطاقتك، ${player2Name}`;
     showSelectableCards("p2-choose-cards", player2Cards, "player2");
     currentPlayer = "player2";
 }
@@ -112,8 +116,7 @@ function showSelectableCards(containerId, cards, player) {
     cards.forEach((card, index) => {
         const cardElement = document.createElement("div");
         cardElement.className = "selectable-card";
-        cardElement.textContent = card === "E" ? "Emperor" : 
-                               card === "S" ? "Slave" : "Citizen";
+        cardElement.textContent = cardTranslations[card];
         cardElement.dataset.value = card;
         cardElement.dataset.index = index;
         
@@ -137,19 +140,19 @@ function showSelectableCards(containerId, cards, player) {
 
 function p1ConfirmSelection() {
     if (!player1Card) {
-        alert("Please select a card first!");
+        alert("الرجاء اختيار بطاقة أولاً!");
         return;
     }
     
     document.getElementById("player1-choose").classList.add("hidden");
     currentPlayer = "player2";
-    document.getElementById("p2-reconfirm-title").textContent = `Are you still ${player2Name}?`;
+    document.getElementById("p2-reconfirm-title").textContent = `هل ما زلت ${player2Name}؟`;
     document.getElementById("player2-reconfirm").classList.remove("hidden");
 }
 
 function p2ConfirmSelection() {
     if (!player2Card) {
-        alert("Please select a card first!");
+        alert("الرجاء اختيار بطاقة أولاً!");
         return;
     }
     
@@ -169,8 +172,7 @@ function showPlayerCards(containerId, cards) {
     cards.forEach(card => {
         const cardElement = document.createElement("div");
         cardElement.classList.add("card");
-        cardElement.textContent = card === "E" ? "Emperor" : 
-                               card === "S" ? "Slave" : "Citizen";
+        cardElement.textContent = cardTranslations[card];
         container.appendChild(cardElement);
     });
 }
@@ -187,39 +189,40 @@ function revealWinner() {
     let result = "";
 
     if (player1Card === "E" && player2Card === "C") {
-        result = `${player1Name} wins!`;
+        result = `${player1Name} فاز!`;
         scores.player1++;
     } else if (player1Card === "C" && player2Card === "E") {
-        result = `${player2Name} wins!`;
+        result = `${player2Name} فاز!`;
         scores.player2++;
     } else if (player1Card === "S" && player2Card === "E") {
-        result = `${player1Name} wins!`;
+        result = `${player1Name} فاز!`;
         scores.player1++;
     } else if (player1Card === "E" && player2Card === "S") {
-        result = `${player2Name} wins!`;
+        result = `${player2Name} فاز!`;
         scores.player2++;
     } else if (player1Card === "C" && player2Card === "S") {
-        result = `${player1Name} wins!`;
+        result = `${player1Name} فاز!`;
         scores.player1++;
     } else if (player1Card === "S" && player2Card === "C") {
-        result = `${player2Name} wins!`;
+        result = `${player2Name} فاز!`;
         scores.player2++;
     } else if (player1Card === "C" && player2Card === "C") {
+        document.getElementById("draw-animation").classList.remove("hidden");
         removeFirstCitizen(player1Cards);
         removeFirstCitizen(player2Cards);
 
-        document.getElementById("turn-indicator").textContent = "It's a draw! One card removed...";
+        document.getElementById("turn-indicator").textContent = "تعادل! تم إزالة بطاقة واحدة...";
 
         setTimeout(() => {
             if (player1Cards.length > 0 && player2Cards.length > 0) {
                 currentPlayer = "player1";
-                document.getElementById("p1-reconfirm-title").textContent = `Are you still ${player1Name}?`;
+                document.getElementById("p1-reconfirm-title").textContent = `هل ما زلت ${player1Name}؟`;
                 document.getElementById("player1-reconfirm").classList.remove("hidden");
             } else {
-                document.getElementById("turn-indicator").textContent = "Game over! No cards left.";
+                document.getElementById("turn-indicator").textContent = "انتهت اللعبة! لا توجد بطاقات متبقية.";
                 document.getElementById("restart-btn").classList.remove("hidden");
             }
-        }, 2000);
+        }, 3000);
         return;
     }
 

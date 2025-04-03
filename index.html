@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emperor-Slave Card Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="player-info">
+        <h2>Enter Player Names</h2>
+        <input type="text" id="player1-name" placeholder="Player 1 Name">
+        <input type="text" id="player2-name" placeholder="Player 2 Name">
+        <button id="start-game">Start Game</button>
+    </div>
+
+    <div id="player1-confirm" class="hidden">
+        <h2 id="player1-title">Are you [Player 1]?</h2>
+        <button id="confirm-player1">I am [Player 1]</button>
+    </div>
+
+    <div id="player1-cards" class="hidden">
+        <h2 id="p1-cards-title">Your Cards</h2>
+        <div id="p1-cards"></div>
+        <button id="p1-seen">I Saw My Cards</button>
+    </div>
+
+    <div id="player2-confirm" class="hidden">
+        <h2 id="player2-title">Are you [Player 2]?</h2>
+        <button id="confirm-player2">I am [Player 2]</button>
+    </div>
+
+    <div id="player2-cards" class="hidden">
+        <h2 id="p2-cards-title">Your Cards</h2>
+        <div id="p2-cards"></div>
+        <button id="p2-seen">I Saw My Cards</button>
+    </div>
+
+    <div id="player1-reconfirm" class="hidden">
+        <h2 id="p1-reconfirm-title">Are you still [Player 1]?</h2>
+        <button id="confirm-p1-reconfirm">Yes, I am</button>
+    </div>
+
+    <div id="player2-reconfirm" class="hidden">
+        <h2 id="p2-reconfirm-title">Are you still [Player 2]?</h2>
+        <button id="confirm-p2-reconfirm">Yes, I am</button>
+    </div>
+
+    <div id="player1-choose" class="hidden">
+        <h2 id="p1-choose-title">Choose Your Card, <span id="player1-display"></span></h2>
+        <div id="p1-choose-cards" class="card-container"></div>
+        <button id="p1-confirm-card">Confirm Selection</button>
+    </div>
+
+    <div id="player2-choose" class="hidden">
+        <h2 id="p2-choose-title">Choose Your Card, <span id="player2-display"></span></h2>
+        <div id="p2-choose-cards" class="card-container"></div>
+        <button id="p2-confirm-card">Confirm Selection</button>
+    </div>
+
+    <div id="reveal-confirm" class="hidden">
+        <h2>Are you both watching?</h2>
+        <button id="reveal-cards">Reveal Cards</button>
+    </div>
+
+    <div id="game-board" class="hidden">
+        <h2>Result</h2>
+        <p id="turn-indicator"></p>
+    </div>
+
+    <div id="winner-board" class="hidden">
+        <h2 id="winner-name"></h2>
+        <button id="restart-btn">Play Again</button>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

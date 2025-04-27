@@ -8,7 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="language-selector">
+        <button id="lang-toggle" class="lang-btn">
+            <span class="primary-lang">AR</span>
+            <span class="secondary-lang">EN</span>
+        </button>
+    </div>
+
     <div id="player-info">
+        <img src="https://cdn-icons-png.flaticon.com/512/2534/2534183.png" alt="players" class="section-icon">
         <h2>أدخل أسماء اللاعبين</h2>
         <input type="text" id="player1-name" placeholder="اسم اللاعب الأول">
         <input type="text" id="player2-name" placeholder="اسم اللاعب الثاني">
@@ -16,44 +24,52 @@
     </div>
 
     <div id="player1-confirm" class="hidden">
+        <img src="https://cdn-icons-png.flaticon.com/512/1791/1791961.png" alt="player 1" class="section-icon">
         <h2 id="player1-title">هل أنت [اللاعب 1]؟</h2>
         <button id="confirm-player1">نعم، أنا [اللاعب 1]</button>
     </div>
 
     <div id="player1-cards" class="hidden">
+        <img src="https://cdn-icons-png.flaticon.com/512/2521/2521826.png" alt="cards" class="section-icon">
         <h2 id="p1-cards-title">بطاقاتك</h2>
         <div id="p1-cards"></div>
         <button id="p1-seen">لقد رأيت بطاقاتي</button>
     </div>
 
     <div id="player2-confirm" class="hidden">
+        <img src="https://cdn-icons-png.flaticon.com/512/1791/1791961.png" alt="player 2" class="section-icon">
         <h2 id="player2-title">هل أنت [اللاعب 2]؟</h2>
         <button id="confirm-player2">نعم، أنا [اللاعب 2]</button>
     </div>
 
     <div id="player2-cards" class="hidden">
+        <img src="https://cdn-icons-png.flaticon.com/512/2521/2521826.png" alt="cards" class="section-icon">
         <h2 id="p2-cards-title">بطاقاتك</h2>
         <div id="p2-cards"></div>
         <button id="p2-seen">لقد رأيت بطاقاتي</button>
     </div>
 
     <div id="player1-reconfirm" class="hidden">
+        <img src="https://cdn-icons-png.flaticon.com/512/1791/1791961.png" alt="player 1" class="section-icon">
         <h2 id="p1-reconfirm-title">هل ما زلت [اللاعب 1]؟</h2>
         <button id="confirm-p1-reconfirm">نعم، أنا هو</button>
     </div>
 
     <div id="player2-reconfirm" class="hidden">
+        <img src="https://cdn-icons-png.flaticon.com/512/1791/1791961.png" alt="player 2" class="section-icon">
         <h2 id="p2-reconfirm-title">هل ما زلت [اللاعب 2]؟</h2>
         <button id="confirm-p2-reconfirm">نعم، أنا هو</button>
     </div>
 
     <div id="player1-choose" class="hidden">
+        <img src="https://cdn-icons-png.flaticon.com/512/2521/2521826.png" alt="choose card" class="section-icon">
         <h2 id="p1-choose-title">اختر بطاقتك، <span id="player1-display"></span></h2>
         <div id="p1-choose-cards" class="card-container"></div>
         <button id="p1-confirm-card">تأكيد الاختيار</button>
     </div>
 
     <div id="player2-choose" class="hidden">
+        <img src="https://cdn-icons-png.flaticon.com/512/2521/2521826.png" alt="choose card" class="section-icon">
         <h2 id="p2-choose-title">اختر بطاقتك، <span id="player2-display"></span></h2>
         <div id="p2-choose-cards" class="card-container"></div>
         <button id="p2-confirm-card">تأكيد الاختيار</button>
@@ -84,6 +100,7 @@
         <button id="restart-btn">العب مرة أخرى</button>
     </div>
 
+    <script src="translations.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
